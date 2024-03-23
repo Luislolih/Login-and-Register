@@ -1,0 +1,6 @@
+.input {
+    @apply text-white border border-gray-500 hover:border-white p-2 rounded-sm duration-75 focus:outline-none w-full;
+}
+.inputError {
+    @apply text-white border border-red-500 p-2 rounded-sm focus:outline-none w-full;
+}
