@@ -6,6 +6,7 @@ import styles from "./LoginForm.module.css";
 import users from "../../users";
 import ErrorLogin from "../ErrorLogin/ErrorLogin";
 import SuccessfulLogin from "../SuccessfulLogin/SuccessfulLogin";
+import ButtonForm from "../ButtonForm/ButtonForm";
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -46,9 +47,12 @@ const LoginForm = () => {
                 <div className={styles.mainLoginForm}>
                     <img className="w-2/3" src={logo}></img>
                     {showErrorLogin && <ErrorLogin />}
-                    <button className={styles.buttonPurple}>
-                        LOG IN WITH FACEBOOK
-                    </button>
+                    <div className="w-full">
+                        <ButtonForm
+                            content={"LOG IN WITH FACEBOOK"}
+                        ></ButtonForm>
+                    </div>
+
                     <div className={styles.orContainer}>
                         <div className="bg-textColor h-0.5 w-full"></div>
                         <p className="text-textColor">OR</p>
@@ -80,12 +84,14 @@ const LoginForm = () => {
                         <p className="text-textColor">Remember me</p>
                         <Toggle />
                     </div>
-                    <button
-                        className={styles.buttonGreen}
-                        onClick={handleLogin}
-                    >
-                        LOG IN
-                    </button>
+
+                    <div className="w-1/3">
+                        <ButtonForm
+                            content={"LOG IN"}
+                            onClick={handleLogin}
+                            colorButton="green"
+                        ></ButtonForm>
+                    </div>
                 </div>
             )}
             {isAuthenticated && <SuccessfulLogin />}

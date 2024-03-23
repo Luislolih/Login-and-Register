@@ -1,0 +1,9 @@
+.buttonForm {
+    @apply text-sm text-white py-2 rounded-2xl my-4 w-full;
+}
+.buttonGreen {
+    @apply bg-spotifyGreen hover:bg-green-700;
+}
+.buttonPurple {
+    @apply bg-purpleColor  hover:bg-blue-900;
+}
