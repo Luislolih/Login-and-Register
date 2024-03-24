@@ -2,7 +2,7 @@
     @apply flex flex-col items-center w-5/6 md:w-1/3  sm:w-2/4 my-16  gap-3;
 }
 .orContainer {
-    @apply flex items-center justify-between w-full gap-3;
+    @apply flex items-center justify-between w-full gap-3 text-sm;
 }
 .inputsContainer {
     @apply flex flex-col gap-2 w-full;

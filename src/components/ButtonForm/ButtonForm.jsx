@@ -6,7 +6,7 @@ const ButtonForm = ({ content, onClick, colorButton, type, disabled }) => {
             className={`${styles.buttonForm} ${
                 colorButton === "green"
                     ? styles.buttonGreen
-                    : styles.buttonPurple
+                    : styles.buttonDefault
             }`}
             onClick={onClick}
             type={type}

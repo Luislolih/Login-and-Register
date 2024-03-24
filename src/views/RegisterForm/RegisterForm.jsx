@@ -3,6 +3,8 @@ import InputForm from "../../components/InputForm/InputForm";
 import logo from "./spotify-logo.png";
 import ButtonForm from "../../components/ButtonForm/ButtonForm";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import ButtonSocialMedia from "../../components/ButtonSocialMedia/ButtonSocialMedia";
 const RegisterForm = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -83,6 +85,12 @@ const RegisterForm = () => {
         <>
             <form className={styles.mainLoginForm} onSubmit={handleSubmit}>
                 <img className="w-2/3" src={logo}></img>
+                <div className="flex justify-center w-full mt-4 mb-1">
+                    <p className="text-textColor text-md">
+                        Sign up to start listening to content.
+                    </p>
+                </div>
+                <div className="bg-textColor border-b w-full"></div>
                 <div className={styles.inputsContainer}>
                     <InputForm
                         placeholder="Name"
@@ -130,6 +138,38 @@ const RegisterForm = () => {
                         }
                         colorButton="green"
                     ></ButtonForm>
+                </div>
+                <div className={styles.orContainer}>
+                    <div className="bg-textColor border-b w-full"></div>
+                    <p className="text-textColor">or</p>
+                    <div className="bg-textColor border-b w-full"></div>
+                </div>
+                <div className="w-full flex flex-col gap-2.5">
+                    <ButtonSocialMedia
+                        content={"Register with Google"}
+                        src="google"
+                        type="button"
+                    ></ButtonSocialMedia>
+                    <ButtonSocialMedia
+                        content={"Register with Facebook"}
+                        src="facebook"
+                        type="button"
+                    ></ButtonSocialMedia>
+                    <ButtonSocialMedia
+                        content={"Register with Apple"}
+                        src="apple"
+                        type="button"
+                    ></ButtonSocialMedia>
+                </div>
+                <div className="bg-textColor border-b w-full"></div>
+                <div className="flex w-full justify-between text-textColor text-sm">
+                    <p>Do you already have an account?</p>
+                    <Link
+                        to="/"
+                        className="text-white border-b hover:text-spotifyGreen hover:border-spotifyGreen"
+                    >
+                        Log in here.
+                    </Link>
                 </div>
             </form>
         </>

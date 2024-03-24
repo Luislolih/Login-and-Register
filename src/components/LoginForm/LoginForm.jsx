@@ -9,6 +9,7 @@ import SuccessfulLogin from "../SuccessfulLogin/SuccessfulLogin";
 import ButtonForm from "../ButtonForm/ButtonForm";
 import { UsersContext } from "../../ContextUsers/ContextUsers";
 import { Link } from "react-router-dom";
+import ButtonSocialMedia from "../ButtonSocialMedia/ButtonSocialMedia";
 const LoginForm = () => {
     const users = useContext(UsersContext);
 
@@ -27,7 +28,8 @@ const LoginForm = () => {
         setPassword(newPassword);
     };
 
-    const handleLogin = () => {
+    const handleLogin = (e) => {
+        e.preventDefault();
         const isValidUser = users.some(
             (user) => user.email === email && user.password === password
         );
@@ -41,13 +43,15 @@ const LoginForm = () => {
     return (
         <>
             {!isAuthenticated && (
-                <div className={styles.mainLoginForm}>
-                    <img className="w-2/3" src={logo}></img>
+                <form className={styles.mainLoginForm} onSubmit={handleLogin}>
+                    <img className="w-2/3 mb-5" src={logo}></img>
                     {showErrorLogin && <ErrorLogin />}
                     <div className="w-full">
-                        <ButtonForm
-                            content={"LOG IN WITH FACEBOOK"}
-                        ></ButtonForm>
+                        <ButtonSocialMedia
+                            src="facebook"
+                            content={"Log in with Facebook"}
+                            type="button"
+                        ></ButtonSocialMedia>
                     </div>
 
                     <div className={styles.orContainer}>
@@ -81,8 +85,8 @@ const LoginForm = () => {
                     <div className="w-1/3">
                         <ButtonForm
                             content={"LOG IN"}
-                            onClick={handleLogin}
                             colorButton="green"
+                            type="submit"
                         ></ButtonForm>
                     </div>
                     <p
@@ -101,7 +105,7 @@ const LoginForm = () => {
                             Sign up for Spotify.
                         </Link>
                     </div>
-                </div>
+                </form>
             )}
 
             {isAuthenticated && <SuccessfulLogin />}
