@@ -3,27 +3,24 @@ import InputForm from "../InputForm/InputForm";
 import Toggle from "../Toggle/Toggle";
 import logo from "./spotify-logo.png";
 import styles from "./LoginForm.module.css";
-import users from "../../users";
+import { useContext } from "react";
 import ErrorLogin from "../ErrorLogin/ErrorLogin";
 import SuccessfulLogin from "../SuccessfulLogin/SuccessfulLogin";
 import ButtonForm from "../ButtonForm/ButtonForm";
-
+import { UsersContext } from "../../ContextUsers/ContextUsers";
+import { Link } from "react-router-dom";
 const LoginForm = () => {
+    const users = useContext(UsersContext);
+    console.log(users);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isEmailValid, setIsEmailValid] = useState(false);
-    const [isPasswordValid, setIsPasswordValid] = useState(false);
+
     const [showErrorLogin, setShowErrorLogin] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    // const regexEmail = /^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
-    // const validateEmail = (email) => {
-    //     return regexEmail.test(email);
-    // };
 
     const handleEmail = (e) => {
         const newEmail = e.target.value;
         setEmail(newEmail);
-        // setIsEmailValid(validateEmail(newEmail));
     };
     const handlePassword = (e) => {
         const newPassword = e.target.value;
@@ -54,9 +51,9 @@ const LoginForm = () => {
                     </div>
 
                     <div className={styles.orContainer}>
-                        <div className="bg-textColor h-0.5 w-full"></div>
+                        <div className="bg-textColor border-b w-full"></div>
                         <p className="text-textColor">OR</p>
-                        <div className="bg-textColor h-0.5 w-full"></div>
+                        <div className="bg-textColor border-b w-full"></div>
                     </div>
 
                     <div className={styles.inputsContainer}>
@@ -64,21 +61,17 @@ const LoginForm = () => {
                             placeholder="Email"
                             type="text"
                             value={email}
-                            isValid={isEmailValid}
-                            error="Debes ingresar un email"
+                            error="You must enter an email"
                             onChange={handleEmail}
                         />
-                        <p></p>
 
                         <InputForm
                             placeholder="Password"
                             type="password"
                             value={password}
-                            isValid={isPasswordValid}
-                            error="Debes ingresar una contraseña"
+                            error="You must enter a password"
                             onChange={handlePassword}
                         />
-                        <p></p>
                     </div>
                     <div className={styles.rememberContainer}>
                         <p className="text-textColor">Remember me</p>
@@ -92,8 +85,25 @@ const LoginForm = () => {
                             colorButton="green"
                         ></ButtonForm>
                     </div>
+                    <p
+                        to="/register"
+                        className="text-white border-b hover:text-spotifyGreen hover:border-spotifyGreen text-sm cursor-pointer"
+                    >
+                        Forgot your password?
+                    </p>
+                    <div className="bg-textColor border-b w-full"></div>
+                    <div className="flex w-full justify-between text-textColor text-sm">
+                        <p>Don't have an account?</p>
+                        <Link
+                            to="/register"
+                            className="text-white border-b hover:text-spotifyGreen hover:border-spotifyGreen"
+                        >
+                            Sign up for Spotify.
+                        </Link>
+                    </div>
                 </div>
             )}
+
             {isAuthenticated && <SuccessfulLogin />}
         </>
     );

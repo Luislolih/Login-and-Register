@@ -5,7 +5,7 @@ const ErrorLogin = () => {
             <IoAlertCircle className="bg-red-600 text-white" />
 
             <p className="bg-red-600 text-white">
-                Correo y/o contraseña incorrectos.
+                Incorrect username or password.
             </p>
         </div>
     );
