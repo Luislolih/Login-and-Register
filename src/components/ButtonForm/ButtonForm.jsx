@@ -1,6 +1,6 @@
 import styles from "./ButtonForm.module.css";
 
-const ButtonForm = ({ content, onClick, colorButton }) => {
+const ButtonForm = ({ content, onClick, colorButton, type, disabled }) => {
     return (
         <button
             className={`${styles.buttonForm} ${
@@ -9,6 +9,8 @@ const ButtonForm = ({ content, onClick, colorButton }) => {
                     : styles.buttonPurple
             }`}
             onClick={onClick}
+            type={type}
+            disabled={disabled}
         >
             {content}
         </button>

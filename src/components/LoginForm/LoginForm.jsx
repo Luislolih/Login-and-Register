@@ -11,7 +11,7 @@ import { UsersContext } from "../../ContextUsers/ContextUsers";
 import { Link } from "react-router-dom";
 const LoginForm = () => {
     const users = useContext(UsersContext);
-    console.log(users);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
