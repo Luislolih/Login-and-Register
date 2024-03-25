@@ -47,6 +47,8 @@ const RegisterForm = () => {
                     ...errors,
                     name: "The name cannot contain special characters or numbers.",
                 });
+            } else {
+                setErrors({ ...errors, name: "" });
             }
         } else if (fieldName === "email") {
             if (!email.trim()) {
@@ -59,6 +61,8 @@ const RegisterForm = () => {
                     ...errors,
                     email: "This email is not valid. Make sure it has a format like this: example@email.com.",
                 });
+            } else {
+                setErrors({ ...errors, email: "" });
             }
         } else if (fieldName === "password") {
             if (!password.trim()) {
@@ -72,6 +76,8 @@ const RegisterForm = () => {
                     password:
                         "Password must contain at least 1 letter, 1 number or special character (!@#?$%^&*), and be at least 10 characters long.",
                 });
+            } else {
+                setErrors({ ...errors, password: "" });
             }
         }
     };
