@@ -45,17 +45,27 @@ const LoginForm = () => {
             {!isAuthenticated && (
                 <form className={styles.mainLoginForm} onSubmit={handleLogin}>
                     <img className="w-2/3 mb-5" src={logo}></img>
-                    {showErrorLogin && (
-                        <ErrorLogin errorMesage="Incorrect username or password." />
-                    )}
-                    <div className="w-full">
+
+                    <div className="w-full flex flex-col gap-2.5">
+                        <ButtonSocialMedia
+                            src="google"
+                            content={"Log in with Google"}
+                            type="button"
+                        ></ButtonSocialMedia>
                         <ButtonSocialMedia
                             src="facebook"
                             content={"Log in with Facebook"}
                             type="button"
                         ></ButtonSocialMedia>
+                        <ButtonSocialMedia
+                            src="apple"
+                            content={"Log in with Apple"}
+                            type="button"
+                        ></ButtonSocialMedia>
                     </div>
-
+                    {showErrorLogin && (
+                        <ErrorLogin errorMesage="Incorrect username or password." />
+                    )}
                     <div className={styles.orContainer}>
                         <div className="bg-textColor border-b w-full"></div>
                         <p className="text-textColor">OR</p>
