@@ -11,7 +11,7 @@ import { UsersContext } from "../../ContextUsers/ContextUsers";
 import { Link } from "react-router-dom";
 import ButtonSocialMedia from "../ButtonSocialMedia/ButtonSocialMedia";
 const LoginForm = () => {
-    const users = useContext(UsersContext);
+    const { users } = useContext(UsersContext);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -45,7 +45,9 @@ const LoginForm = () => {
             {!isAuthenticated && (
                 <form className={styles.mainLoginForm} onSubmit={handleLogin}>
                     <img className="w-2/3 mb-5" src={logo}></img>
-                    {showErrorLogin && <ErrorLogin />}
+                    {showErrorLogin && (
+                        <ErrorLogin errorMesage="Incorrect username or password." />
+                    )}
                     <div className="w-full">
                         <ButtonSocialMedia
                             src="facebook"

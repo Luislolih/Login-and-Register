@@ -2,17 +2,21 @@ import styles from "./RegisterForm.module.css";
 import InputForm from "../../components/InputForm/InputForm";
 import logo from "./spotify-logo.png";
 import ButtonForm from "../../components/ButtonForm/ButtonForm";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ButtonSocialMedia from "../../components/ButtonSocialMedia/ButtonSocialMedia";
+import { UsersContext } from "../../ContextUsers/ContextUsers";
 const RegisterForm = () => {
+    const { users, setUsers } = useContext(UsersContext);
     const [name, setName] = useState("");
+    const [existUser, setExistUser] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState("");
     const regexName = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+$/u;
     const regexEmail = /^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
     const regexPassword = /^(?=.*[a-zA-Z])(?=.*[0-9!@#?$%^&*])(.{10,})$/;
+    // const existUser = users.some((user) => user.email === email);
     useEffect(() => {
         if (regexName.test(name.trim())) {
             setErrors({ ...errors, name: "" });
@@ -20,6 +24,9 @@ const RegisterForm = () => {
         if (regexEmail.test(email.trim())) {
             setErrors({ ...errors, email: "" });
         }
+        // if (!existUser) {
+        //     setErrors({ ...errors, email: "" });
+        // }
         if (regexPassword.test(password.trim())) {
             setErrors({ ...errors, password: "" });
         }
@@ -30,6 +37,11 @@ const RegisterForm = () => {
             setName(value);
         } else if (fieldName === "email") {
             setEmail(value);
+            const newUserExists = users.some((user) => user.email === value);
+            setExistUser(newUserExists);
+            if (!newUserExists) {
+                setErrors({ ...errors, email: "" });
+            }
         } else if (fieldName === "password") {
             setPassword(value);
         }
@@ -84,13 +96,33 @@ const RegisterForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (existUser) {
+            setErrors({
+                ...errors,
+                email: "The email already exists",
+            });
+        } else {
+            setErrors({
+                ...errors,
+                email: "",
+            });
+            const newUser = {
+                name: name,
+                email: email,
+                password: password,
+            };
+            setUsers((prevUsers) => [...prevUsers, newUser]);
+        }
+
         console.log("hiciste submit!!!!");
     };
-    console.log(errors);
+    console.log(users);
     return (
         <>
             <form className={styles.mainLoginForm} onSubmit={handleSubmit}>
                 <img className="w-2/3" src={logo}></img>
+
                 <div className="flex justify-center w-full mt-4 mb-1">
                     <p className="text-textColor text-md">
                         Sign up to start listening to content.
