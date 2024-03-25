@@ -1,6 +1,6 @@
 import styles from "./RegisterForm.module.css";
 import InputForm from "../../components/InputForm/InputForm";
-import logo from "./spotify-logo.png";
+import logo from "./logo-gloomy-web.png";
 import ButtonForm from "../../components/ButtonForm/ButtonForm";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -16,7 +16,6 @@ const RegisterForm = () => {
     const regexName = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+$/u;
     const regexEmail = /^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
     const regexPassword = /^(?=.*[a-zA-Z])(?=.*[0-9!@#?$%^&*])(.{10,})$/;
-    // const existUser = users.some((user) => user.email === email);
     useEffect(() => {
         if (regexName.test(name.trim())) {
             setErrors({ ...errors, name: "" });
@@ -24,9 +23,7 @@ const RegisterForm = () => {
         if (regexEmail.test(email.trim())) {
             setErrors({ ...errors, email: "" });
         }
-        // if (!existUser) {
-        //     setErrors({ ...errors, email: "" });
-        // }
+
         if (regexPassword.test(password.trim())) {
             setErrors({ ...errors, password: "" });
         }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import InputForm from "../InputForm/InputForm";
 import Toggle from "../Toggle/Toggle";
-import logo from "./spotify-logo.png";
+import logo from "./logo-gloomy-web.png";
 import styles from "./LoginForm.module.css";
 import { useContext } from "react";
 import ErrorLogin from "../ErrorLogin/ErrorLogin";
@@ -104,7 +104,7 @@ const LoginForm = () => {
                             to="/register"
                             className="text-white border-b hover:text-spotifyGreen hover:border-spotifyGreen"
                         >
-                            Sign up for Spotify.
+                            Sign up for Gloomy.
                         </Link>
                     </div>
                 </form>
