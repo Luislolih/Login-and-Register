@@ -5,7 +5,7 @@ import logo from "./logo-gloomy-web.png";
 import styles from "./LoginForm.module.css";
 import { useContext } from "react";
 import ErrorLogin from "../ErrorLogin/ErrorLogin";
-import SuccessfulLogin from "../SuccessfulLogin/SuccessfulLogin";
+import Successful from "../Successful/Successful";
 import ButtonForm from "../ButtonForm/ButtonForm";
 import { UsersContext } from "../../ContextUsers/ContextUsers";
 import { Link } from "react-router-dom";
@@ -110,7 +110,7 @@ const LoginForm = () => {
                 </form>
             )}
 
-            {isAuthenticated && <SuccessfulLogin />}
+            {isAuthenticated && <Successful text="Login Success!" />}
         </>
     );
 };

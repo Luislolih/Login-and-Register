@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ButtonSocialMedia from "../../components/ButtonSocialMedia/ButtonSocialMedia";
 import { UsersContext } from "../../ContextUsers/ContextUsers";
+import Successful from "../../components/Successful/Successful";
 const RegisterForm = () => {
     const { users, setUsers } = useContext(UsersContext);
     const [name, setName] = useState("");
@@ -13,6 +14,7 @@ const RegisterForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState("");
+    const [showSuccess, setShowSuccess] = useState(false);
     const regexName = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+$/u;
     const regexEmail = /^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
     const regexPassword = /^(?=.*[a-zA-Z])(?=.*[0-9!@#?$%^&*])(.{10,})$/;
@@ -110,22 +112,24 @@ const RegisterForm = () => {
                 password: password,
             };
             setUsers((prevUsers) => [...prevUsers, newUser]);
+            setShowSuccess(true);
+            setName("");
+            setEmail("");
+            setPassword("");
         }
-
-        console.log("hiciste submit!!!!");
     };
-    console.log(users);
     return (
         <>
             <form className={styles.mainLoginForm} onSubmit={handleSubmit}>
                 <img className="w-2/3" src={logo}></img>
 
-                <div className="flex justify-center w-full mt-4 mb-1">
+                <div className="flex justify-center text-xl w-full mt-4 mb-1">
                     <p className="text-textColor text-md">
                         Sign up to start listening to content.
                     </p>
                 </div>
                 <div className="bg-textColor border-b w-full"></div>
+                {showSuccess && <Successful text="Registration completed!" />}
                 <div className={styles.inputsContainer}>
                     <InputForm
                         placeholder="Name"
